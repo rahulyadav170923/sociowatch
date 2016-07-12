@@ -1,6 +1,10 @@
 from flask import Flask 
-from backend import app
+app = Flask(__name__)
+from tweepy import 
 
 @app.route('/')
 def index():
 	return "Hello World"
+
+
+
