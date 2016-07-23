@@ -1,3 +1,3 @@
-from backend.views import app
+from backend.views import *
 if __name__=='__main__':
 	app.run(debug=True)

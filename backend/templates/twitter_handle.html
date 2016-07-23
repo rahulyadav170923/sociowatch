@@ -5,6 +5,16 @@
 <p>max_id time : {{stats['max_id']['created_at']}}</p>
 <p>since_id time: {{stats['since_id']['created_at']}}</p>
 <br>
+<br>
+<p>change credentials : 
+	<form action="{{ url_for('change_app_credential', 
+    	twitter_handle=stats['twitter_handle']) }}" method="post">
+  <button>chnage app credential</button>
+</form></p>
+
+<p><b>app_no : {{app_no}}</b></p>
+<br>
+<br>
 
 <p>collect_historical data : 
 	<form action="{{ url_for('collect_historical_data', 
@@ -13,9 +23,14 @@
   <br>
   <button>get historical data</button>
 </form></p>
+<p>rate limit for current app credential : {{rate_limit['resources']['search']}}</p>
+
+
+
+
 
   {% for tweet in tweets %}
-    <li><b>{{tweet['text']}}</b></li>
+    <li><b>{{tweet['text']}}</b>    {{tweet['created_at']}}</li>
   {% endfor %}
 
 

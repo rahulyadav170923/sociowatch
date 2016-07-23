@@ -1,21 +1,30 @@
 import tweepy
-
+import pdb
 import os
 import sys
 sys.path.append(os.getcwd())
 
-from keys import twitter1_keys
+from keys import *
 
 from pymongo import MongoClient
 Client=MongoClient()
 db=Client['sociowatch']
+app_no=0
+twitter_key=twitter_keys[app_no]
+
+# initialise api instance
+auth = tweepy.OAuthHandler(twitter_key['consumer_key'], twitter_key['consumer_secret'])
+auth.set_access_token(twitter_key['access_token'], twitter_key['access_token_secret'])
+api = tweepy.API(auth)
+
 
 # get all historical tweets (including tweets retweets,reply tweets )
 
 def historical_tweets(twitter_handle,page_count,max_id=0):
-	for page in tweepy.Cursor(api.search,q=twitter_handle,count=100,max_id=max_id).pages(page_count):
-		page=[i._json for i in page]
-		result=db[twitter_handle].insert_many(page)
+	for page in tweepy.Cursor(api.search,q='@'+twitter_handle,count=100,max_id=max_id).pages(page_count):
+		data=[i._json for i in page]
+		db[twitter_handle].insert_many(data)
+	return 'done'
 
 
 
@@ -56,12 +65,3 @@ def database():
 	pass
 	
 
-
-
-
-
-if __name__=='__main__':
-	auth = tweepy.OAuthHandler(twitter1_keys['consumer_key'], twitter1_keys['consumer_secret'])
-	auth.set_access_token(twitter1_keys['access_token'], twitter1_keys['access_token_secret'])
-	api = tweepy.API(auth)
-	historical_tweets()
