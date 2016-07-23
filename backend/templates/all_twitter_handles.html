@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% for collection in collection_names %}
+    <li><b><a href="{{ url_for('twitter_handle_stats', 
+    	twitter_handle=collection ) }}">{{ collection }}</a></b></li>
+  {% endfor %}
+{% endblock %}

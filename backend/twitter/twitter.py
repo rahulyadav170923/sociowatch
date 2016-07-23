@@ -1,36 +1,67 @@
 import tweepy
-#from keys import twitter_keys
 
-auth = tweepy.OAuthHandler(twitter_keys['consumer_key'], twitter_keys['consumer_secret'])
-auth.set_access_token(twitter_keys['access_token'], twitter_keys['access_token_secret'])
+import os
+import sys
+sys.path.append(os.getcwd())
 
-api = tweepy.API(auth)
+from keys import twitter1_keys
 
+from pymongo import MongoClient
+Client=MongoClient()
+db=Client['sociowatch']
 
-# can i put yeild here 
+# get all historical tweets (including tweets retweets,reply tweets )
 
-# tweets by a twitter handler @pmo
-#10 requests
-#add cursor usage
-
-def tweets(screen_name):
-	data=api.user_timeline(id='twitterapi',count=10)
-	filter_data=[]
-	for i in data:
-		filter_data.append(i)
-	return filter_data
-
+def historical_tweets(twitter_handle,max_id=0):
+	for page in tweepy.Cursor(api.search,q=twitter_handle,count=100,max_id=max_id).pages(50):
+		page=[i._json for i in page]
+		result=db.smritirani.insert_many(page)
 
 
 
 # not usable (doubt)
 # get retweets to a given tweet
 # add yield
+
 def retweet(tweet_id):
 	data=api.retweets(id=tweet_id)
 	return data
 
 
+# get replies
+def get_replies():
+	pass
+
+
+# search tweets 
+def search():
+	pass
+
+
+# popular handle
+def popular_handle():
+	pass
+
+# accountability
+def accountability():
+	pass
+
+#sentiment anylasis on replies
+def sentiment_anylasis():
+	pass
+
+# build database in mongodb
+#get all tweets mentioning a specific user
+def database():
+	pass
+	
 
 
 
+
+
+if __name__=='__main__':
+	auth = tweepy.OAuthHandler(twitter1_keys['consumer_key'], twitter1_keys['consumer_secret'])
+	auth.set_access_token(twitter1_keys['access_token'], twitter1_keys['access_token_secret'])
+	api = tweepy.API(auth)
+	historical_tweets()

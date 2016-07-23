@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>stats</h2>
+<p>count : {{stats['count']}}</p>
+<p>max_id time : {{stats['max_id']['created_at']}}</p>
+<p>since_id time: {{stats['since_id']['created_at']}}</p>
+<br>
+
+
+  {% for tweet in tweets %}
+    <li><b>{{tweet['text']}}</b></li>
+  {% endfor %}
+
+
+
+{% endblock %}
