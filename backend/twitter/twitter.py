@@ -12,10 +12,10 @@ db=Client['sociowatch']
 
 # get all historical tweets (including tweets retweets,reply tweets )
 
-def historical_tweets(twitter_handle,max_id=0):
-	for page in tweepy.Cursor(api.search,q=twitter_handle,count=100,max_id=max_id).pages(50):
+def historical_tweets(twitter_handle,page_count,max_id=0):
+	for page in tweepy.Cursor(api.search,q=twitter_handle,count=100,max_id=max_id).pages(page_count):
 		page=[i._json for i in page]
-		result=db.smritirani.insert_many(page)
+		result=db[twitter_handle].insert_many(page)
 
 
 

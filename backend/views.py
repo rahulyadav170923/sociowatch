@@ -4,15 +4,21 @@ import tweepy
 from twitter import *
 
 
-govt_twitter_handles=['smritirani','RailMinIndia']
-
+govt_twitter_handles=['smritirani','RailMinIndia','RashtrapatiBhvn','HRDMinistry']
+#current_app_credentials=
 
 #  to start collecting
 
-@app.route('/collect_historical_data')
-def collect_historical_data():
-	historical_tweets('@smritirani')
-	return "history"
+@app.route('/collect_historical_data',methods=['POST'])
+def collect_historical_data(twitter_handle):
+	pages=request.form['pages']
+	if db[twitter_handle].find_one(sort=[('_id',-1)])['id']:
+		max_id=db[twitter_handle].find_one(sort=[('_id',-1)])['id']
+		historical_tweets(twitter_handle,pages,max_id)
+	else :
+		historical_tweets(twitter_handle,pages)
+	return redirect(url_for('twitter_handle_stats'),twitter_handle=twitter_handle)
+
 
 
 
@@ -21,6 +27,7 @@ def collect_historical_data():
 @app.route('/all_twitter_handles/<string:twitter_handle>')
 def twitter_handle_stats(twitter_handle):
 	stats={}
+	stats['twitter_handle']=twitter_handle
 	stats['count']=db[twitter_handle].count()
 	stats['max_id']=db[twitter_handle].find_one(sort=[('_id',-1)])
 	stats['since_id']=db[twitter_handle].find_one()
@@ -32,16 +39,16 @@ def twitter_handle_stats(twitter_handle):
 # to show all collections and their stats
 
 @app.route('/all_twitter_handles')
-def all_twitter_handles():
+def all_twitter_handles(): 
 	collection_names=db.collection_names()
+	if not collection_names:
+		for i in govt_twitter_handles:
+			db.create_collection(i)
+		collection_names=db.collection_names()
 	return render_template('all_twitter_handles.html',collection_names=collection_names[:-1])
 
 
-# tweet
-
-@app.route('/tweet_json')
-def tweet_json():
-	pass
+# to check ratelimit status of the app
 
 
 

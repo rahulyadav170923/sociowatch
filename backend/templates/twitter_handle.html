@@ -6,6 +6,13 @@
 <p>since_id time: {{stats['since_id']['created_at']}}</p>
 <br>
 
+<p>collect_historical data : 
+	<form action="{{ url_for('collect_historical_data', 
+    	twitter_handle=stats['twitter_handle']) }}" method="post">
+ pages: <input name="pages" value="">
+  <br>
+  <button>get historical data</button>
+</form></p>
 
   {% for tweet in tweets %}
     <li><b>{{tweet['text']}}</b></li>
