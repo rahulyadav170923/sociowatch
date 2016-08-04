@@ -1,22 +1,7 @@
 import tweepy
 import pdb
-import os
-import sys
-sys.path.append(os.getcwd())
-
 from keys import *
-
-from pymongo import MongoClient
-Client=MongoClient()
-db=Client['sociowatch']
-app_no=0
-twitter_key=twitter_keys[app_no]
-
-# initialise api instance
-auth = tweepy.OAuthHandler(twitter_key['consumer_key'], twitter_key['consumer_secret'])
-auth.set_access_token(twitter_key['access_token'], twitter_key['access_token_secret'])
-api = tweepy.API(auth)
-
+from backend.twitter import *
 
 # get all historical tweets (including tweets retweets,reply tweets )
 
@@ -26,6 +11,9 @@ def historical_tweets(twitter_handle,page_count,max_id=0):
 		db[twitter_handle].insert_many(data)
 	return 'done'
 
+# added in cronjob to download new tweets
+def get_tweets():
+	pass
 
 
 # not usable (doubt)
@@ -42,7 +30,7 @@ def get_replies():
 	pass
 
 
-# search tweets 
+# search tweets
 def search():
 	pass
 
@@ -63,5 +51,3 @@ def sentiment_anylasis():
 #get all tweets mentioning a specific user
 def database():
 	pass
-	
-

@@ -1,7 +1,7 @@
 from flask import Flask,render_template,redirect,request,url_for
 app = Flask(__name__)
 import tweepy
-from twitter import *
+from backend.twitter import *
 import pdb
 import pymongo
 
@@ -42,7 +42,7 @@ def twitter_handle_stats(twitter_handle):
 # to show all collections and their stats
 
 @app.route('/all_twitter_handles')
-def all_twitter_handles(): 
+def all_twitter_handles():
 	collection_names=db.collection_names()
 	if not collection_names:
 		for i in govt_twitter_handles:
@@ -51,20 +51,6 @@ def all_twitter_handles():
 	return render_template('all_twitter_handles.html',collection_names=collection_names[:-1])
 
 
-# to check ratelimit status of the app credentials
-@app.route('/app_credentials/<string:twitter_handle>',methods=['GET','POST'])
-def change_app_credential(twitter_handle):
-	global app_no,twitter_key,twitter_keys
-	if app_no<3:
-		app_no+=1
-	else:
-		app_no=0
-	twitter_key=twitter_keys[app_no]
-	return redirect(url_for('twitter_handle_stats',twitter_handle=twitter_handle))
-
-
-
-
-
-
-
+@app.route('/add_tweets')
+def add_tweets():
+	pass

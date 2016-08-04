@@ -6,18 +6,12 @@
 <p>since_id time: {{stats['since_id']['created_at']}}</p>
 <br>
 <br>
-<p>change credentials : 
-	<form action="{{ url_for('change_app_credential', 
-    	twitter_handle=stats['twitter_handle']) }}" method="post">
-  <button>chnage app credential</button>
-</form></p>
-
 <p><b>app_no : {{app_no}}</b></p>
 <br>
 <br>
 
-<p>collect_historical data : 
-	<form action="{{ url_for('collect_historical_data', 
+<p>collect_historical data :
+	<form action="{{ url_for('collect_historical_data',
     	twitter_handle=stats['twitter_handle']) }}" method="post">
  pages: <input name="pages" value="">
   <br>
