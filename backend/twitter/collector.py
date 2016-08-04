@@ -1,34 +1,48 @@
+import os
+import sys
+sys.path.append(os.getcwd())
 from backend.twitter import *
+from config import twitter_handle_list
 
-def get_tweets(twitter_handle):
+
+def get_tweets(twitter_handle,since_id,twitter_handle_index):
+    print "get tweets for {} from {}".format(twitter_handle,since_id)
     for page in tweepy.Cursor(api.search,q='@'+twitter_handle,count=100,since_id=since_id).pages(10):
-		data=[i._json for i in page]
+        data=[i._json for i in page]
+        if len(data)<10:
+            print " {} tweets".format(len(data))
+            twitter_handle_index+=1
         db[twitter_handle].insert_many(data)
+        return twitter_handle_index
 
-def setup_tweets():
+
+def setup_tweets(twitter_handle):
     for page in tweepy.Cursor(api.search,q='@'+twitter_handle,count=100).pages(10):
-		data=[i._json for i in page]
+        data=[i._json for i in page]
         db[twitter_handle].insert_many(data)
-
-
-def update_collection():
-    collection_names=db.collection_names()
-	if not collection_names:
-		for i in govt_twitter_handles:
-			db.create_collection(i)
-
 
 
 
 if __name__ == '__main__':
-    update_collection()
-     # get last run twitter handle
-     config=db.config.find_one({}) # details of cron job
-     twitter_handles=db.config.find_one({})
-     twitter_handle=twitter_handles[index]
-     if
-     while m['resources']['search']['/search/tweets']['remaining']-10>10 :
-         get_tweets()
-         m=api.rate_limit_status()
-         config={}
-         db.config.update({})
+    config=db.config.find_one() # details of cron job
+    twitter_handle_index=config['twitter_handle_index']
+    twitter_handle=twitter_handle_list[twitter_handle_index]
+    while 1 :
+        if db[twitter_handle].find_one():
+            twitter_handle=twitter_handle_list[twitter_handle_index]
+            since_id=db[twitter_handle].find_one(sort=[('_id',-1)])['id']
+            twitter_handle_index=get_tweets(twitter_handle,since_id,twitter_handle_index)
+        else :
+            setup_tweets(twitter_handle)
+
+        m=api.rate_limit_status()
+        if m['resources']['search']['/search/tweets']['remaining']-10<20:
+            print "exiting with {} left ".format(m['resources']['search']['/search/tweets']['remaining'])
+            break
+    import pdb;pdb.set_trace()
+    if twitter_handle_list[twitter_handle_index]==twitter_handle_list[len(twitter_handle_list)-1]:
+        twitter_handle_index=0
+    else :
+        twitter_handle_index+=1
+    config={'twitter_handle_index':twitter_handle_index}
+    db.config.update(db.config.find_one(),config)
