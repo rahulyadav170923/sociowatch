@@ -1,9 +1,9 @@
-import tweepy
 import pdb
 from keys import *
 from backend.twitter import *
-
+from config import twitter_handle_list
 # get all historical tweets (including tweets retweets,reply tweets )
+
 
 def historical_tweets(twitter_handle,page_count,max_id=0):
 	for page in tweepy.Cursor(api.search,q='@'+twitter_handle,count=100,max_id=max_id).pages(page_count):
