@@ -51,6 +51,12 @@ def all_twitter_handles():
 	return render_template('all_twitter_handles.html',collection_names=collection_names[:-1])
 
 
+
 @app.route('/add_tweets')
 def add_tweets():
 	pass
+# ---------------------- main app starts------------------
+
+@app.route('/main')
+def main():
+	return render_template('mainpage.html')

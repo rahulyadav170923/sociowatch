@@ -1,5 +1,4 @@
 twitter_handle_list=[
-'smritiirani',
 'RailMinIndia',
 'MoHFW_INDIA',
 'TexMinIndia',

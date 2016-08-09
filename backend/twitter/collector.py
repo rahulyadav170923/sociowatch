@@ -7,13 +7,16 @@ from config import twitter_handle_list
 
 def get_tweets(twitter_handle,since_id,twitter_handle_index):
     print "get tweets for {} from {}".format(twitter_handle,since_id)
+
     for page in tweepy.Cursor(api.search,q='@'+twitter_handle,count=100,since_id=since_id).pages(10):
         data=[i._json for i in page]
+        print "{} tweets".format(len(data))
         if len(data)<10:
             print " {} tweets".format(len(data))
             twitter_handle_index+=1
+            break
         db[twitter_handle].insert_many(data)
-        return twitter_handle_index
+    return twitter_handle_index
 
 
 def setup_tweets(twitter_handle):
@@ -27,6 +30,7 @@ if __name__ == '__main__':
     config=db.config.find_one() # details of cron job
     twitter_handle_index=config['twitter_handle_index']
     twitter_handle=twitter_handle_list[twitter_handle_index]
+    #import pdb;pdb.set_trace()
     while 1 :
         if db[twitter_handle].find_one():
             twitter_handle=twitter_handle_list[twitter_handle_index]
@@ -39,7 +43,6 @@ if __name__ == '__main__':
         if m['resources']['search']['/search/tweets']['remaining']-10<20:
             print "exiting with {} left ".format(m['resources']['search']['/search/tweets']['remaining'])
             break
-    import pdb;pdb.set_trace()
     if twitter_handle_list[twitter_handle_index]==twitter_handle_list[len(twitter_handle_list)-1]:
         twitter_handle_index=0
     else :
