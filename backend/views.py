@@ -1,11 +1,12 @@
-from flask import Flask,render_template,redirect,request,url_for
+from flask import Flask,render_template,redirect,request,url_for,jsonify,json
 app = Flask(__name__)
 import tweepy
 from backend.twitter import *
 import pdb
 import pymongo
+from bson.json_util import dumps
 
-
+# ---------------------- not useful for now-------------------
 govt_twitter_handles=['smritiirani','RailMinIndia','RashtrapatiBhvn','HRDMinistry']
 #current_app_credentials=
 
@@ -60,3 +61,7 @@ def add_tweets():
 @app.route('/main')
 def main():
 	return render_template('mainpage.html')
+@app.route('/profiles')
+def profiles():
+	profiles=list(db.profiles.find())
+	return jsonify(json.loads(dumps(profiles)))

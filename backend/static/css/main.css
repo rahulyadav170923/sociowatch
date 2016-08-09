@@ -4,7 +4,8 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #ecf0f1; }
+  background-color: #ecf0f1;
+}
 
 header {
   display: block;
@@ -18,10 +19,23 @@ header {
   -webkit-border-top-right-radius: 8px;
   border-top-right-radius: 8px; }
 
+
+.profile-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;*/
+  align-items: center;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+}
+
+
+
+
 .container {
-  float: left;
   width: 320px;
-  margin: 3em auto 1em auto;
+  margin: 3em 20px 1em 20px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;

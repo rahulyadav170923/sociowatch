@@ -6,5 +6,6 @@ twitter_handle_list=[
 'HMOIndia',
 'CimGOI',
 'manojsinhabjp',
-'kpgurjarbjp'
+'kpgurjarbjp',
+'smritiirani'
 ]
