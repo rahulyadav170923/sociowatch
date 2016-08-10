@@ -1,17 +1,20 @@
 //Follow Button Effect
 var Profile = React.createClass({
+  onError() {
+  this.src=this.props.profile_image
+},
   render: function() {
     return (<div className="container">
 		<header>
 			<div className="bio">
-        <img src={this.props.background} alt="background" className="bg"/>
+        <img src={this.props.background ? this.props.background:"http://abs.twimg.com/images/themes/theme1/bg.png"} alt='no banner'  className="bg"/>
 				<div className="desc">
-					<h3>@carlf</h3>
-					<p>Carl Fredricksen is the protagonist in Up. He also appeared in Dug </p>
+					<h3>@{this.props.twitter_handle}</h3>
+					<p>{this.props.description}</p>
 				</div>
 			</div>
 			<div className="avatarcontainer">
-				<img src="http://www.croop.cl/UI/twitter/images/carl.jpg" alt="avatar" className="avatar"/>
+				<img src={this.props.profile_image} alt="avatar" className="avatar"/>
 				<div className="hover">
 						<div className="icon-twitter"></div>
 				</div>
@@ -21,37 +24,47 @@ var Profile = React.createClass({
 			<div className="data">
 				<ul>
 					<li>
-						2,934
+						{this.props.tweets}
 						<span>Tweets</span>
 					</li>
 					<li>
-						1,119
+						{this.props.followers}
 						<span>Followers</span>
 					</li>
 					<li>
-						530
+						{this.props.following}
 						<span>Following</span>
 					</li>
 				</ul>
 			</div>
 
-			<div className="follow"> <div className="icon-twitter"></div> Follow</div>
+			<div className="follow"> <div className="icon-twitter"></div> {this.props.twitter_handle}</div>
 		</div>
 
 	</div>);
   }
 });
-
+/*
+var profiles=[]
+for (var i = 0; i < 8; i++) {
+  profiles.push(<Profile />)
+}
+*/
 
 var MainPage=React.createClass({
   getInitialState: function() {
-    $.get('http://127.0.0.1:5000/profiles',function (data) {
+    return {profiles:[]};
+  },
+  componentDidMount:function(){
+    this.serverRequest=$.get('http://127.0.0.1:5000/profiles',function (result) {
       var profiles=[]
       for (var i = 0; i < 8; i++) {
-        profiles.push(<Profile background={data[i]['profile_background_image_url']}/>)
+        profiles.push(<Profile background={result[i]['profile_banner_url']} twitter_handle={result[i]['screen_name']}
+        description={result[i]['description']} tweets={result[i]['statuses_count']} followers={result[i]['followers_count']}
+        following={result[i]['friends_count']} profile_image={result[i]['profile_image_url']}/>)
       }
-      return {'profiles':profiles};
-    })
+      this.setState({profiles:profiles})
+    }.bind(this))
   },
   render: function(){
     return (<div className="profile-container">
@@ -70,4 +83,9 @@ ReactDOM.render(
 ReactDOM.render(
   <Profile />,
   document.getElementsByClassName('main-container')[0]
-);*/
+);
+var profiles=[]
+for (var i = 0; i < 8; i++) {
+  profiles.push(<Profile background={data[i]['profile_background_image_url']}/>)
+}
+*/

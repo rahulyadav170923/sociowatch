@@ -4,8 +4,27 @@
   box-sizing: border-box; }
 
 body {
+  margin: 0px 0px 0px 0px;
   background-color: #ecf0f1;
 }
+.nav{
+  line-height: 5;
+  display: inline-block;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  position: inherit;
+  padding: 20px 20px 20px 20px;
+  font-size: 40px;
+  background-color: turquoise;
+}
+
+.nav>img{
+  float:left;
+  max-height: 150px;
+  max-width: 150px
+}
+
 
 header {
   display: block;
@@ -19,7 +38,6 @@ header {
   -webkit-border-top-right-radius: 8px;
   border-top-right-radius: 8px; }
 
-
 .profile-container{
   display: flex;
   flex-direction: row;
@@ -29,9 +47,6 @@ header {
   width: 100%;
   padding: 10px 10px 10px 10px;
 }
-
-
-
 
 .container {
   width: 320px;
@@ -48,6 +63,7 @@ header {
   box-shadow: #bdc3c7 0 5px 5px; }
 
 .bg {
+  max-height: 200px;
   border-bottom: 8px solid #5cc0ff; }
 
 .bio:hover > .desc {

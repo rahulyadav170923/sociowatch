@@ -61,6 +61,7 @@ def add_tweets():
 @app.route('/main')
 def main():
 	return render_template('mainpage.html')
+
 @app.route('/profiles')
 def profiles():
 	profiles=list(db.profiles.find())
