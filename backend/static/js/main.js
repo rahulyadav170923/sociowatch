@@ -56,7 +56,7 @@ var MainPage=React.createClass({
     return {profiles:[]};
   },
   componentDidMount:function(){
-    this.serverRequest=$.get('http://127.0.0.1:5000/profiles',function (result) {
+    this.serverRequest=$.get('/profiles',function (result) {
       var profiles=[]
       for (var i = 0; i < 8; i++) {
         profiles.push(<Profile background={result[i]['profile_banner_url']} twitter_handle={result[i]['screen_name']}
