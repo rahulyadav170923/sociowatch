@@ -2,4 +2,3 @@
 data/
 *.json
 venv/
-keys.py
