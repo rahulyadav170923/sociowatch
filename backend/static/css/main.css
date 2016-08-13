@@ -7,6 +7,7 @@ body {
   margin: 0px 0px 0px 0px;
   background-color: #ecf0f1;
 }
+/*
 .nav{
   line-height: 5;
   display: inline-block;
@@ -17,14 +18,9 @@ body {
   padding: 20px 20px 20px 20px;
   font-size: 40px;
   background-color: turquoise;
+  font-family: fantasy;
 }
-
-.nav>img{
-  float:left;
-  max-height: 150px;
-  max-width: 150px
-}
-
+*/
 
 header {
   display: block;
@@ -212,3 +208,7 @@ header {
   .follow:hover {
     background-color: #167abd;
     cursor: pointer; }
+
+.brand-logo{
+  height: 400px;
+}

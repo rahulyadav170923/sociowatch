@@ -1,0 +1,19 @@
+{
+  "name": "sociowatch",
+  "homepage": "https://github.com/rahulyadav170923/sociowatch",
+  "authors": [
+    "https://sociowatch.herokuapp.com/main"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "^4.6.3",
+    "react": "^15.3.0",
+    "babel": "^5.8.38",
+    "jquery": "^3.1.0",
+    "remarkable": "^1.6.2",
+    "materialize": "^0.97.7"
+  }
+}

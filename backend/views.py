@@ -60,7 +60,7 @@ def add_tweets():
 
 @app.route('/main')
 def main():
-	return render_template('mainpage.html')
+	return render_template('profiles.html')
 
 @app.route('/profiles')
 def profiles():

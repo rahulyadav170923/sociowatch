@@ -1,4 +1,4 @@
 *.pyc
 data/
-*.json
 venv/
+bower_components/
