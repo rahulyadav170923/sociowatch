@@ -7,7 +7,9 @@ A web app to visualise twitter handles of govt. twitter handles. produce anaylas
 <br>3. monoglab for mongodb database
 
 # Future additions :
-1. add various visualisations[best part] 
+
+1. add various visualisations[best part]
 2. twitter,facebook login functionality
 3. add facebook backend with same funtionality
 4. analysis page
+5. configure buildpacks
