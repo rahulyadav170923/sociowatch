@@ -1,0 +1,22 @@
+{
+  "name": "sociowatch",
+  "version": "1.0.0",
+  "description": "A web app to visualise twitter handles of govt. twitter handles. produce anaylasis showing signs of improvements <br> (in development)",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulyadav170923/sociowatch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahulyadav170923/sociowatch/issues"
+  },
+  "homepage": "https://github.com/rahulyadav170923/sociowatch#readme",
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}
