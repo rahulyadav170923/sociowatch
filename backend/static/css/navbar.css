@@ -1,7 +1,13 @@
+.navbar-fixed {
+  height: 100px;
+  min-height: 50px;
+
+}
 nav {
-  height: 12%;
+  height: inherit;;
   min-height:50px;
 }
+
 nav .brand-logo {
   position: initial;
   height: inherit;
@@ -9,14 +15,22 @@ nav .brand-logo {
 .brand-logo img {
   height: inherit;
 }
-nav ul {
+.brand-logo {
+  margin-left: 15%;
+}
+
+nav > div > ul {
+  margin-right: 18%;
   height: inherit;
 }
-nav ul li {
+nav > div > ul > li {
+  padding: 0px 10px 0px 10px;
   height: inherit;
   display: table;
 }
-nav ul li a {
+nav > div > ul > li > a {
+  font-family: fantasy;
+  font-size: x-large;
   display: table-cell;
   height: inherit;
   vertical-align: middle;

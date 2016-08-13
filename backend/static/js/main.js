@@ -1,4 +1,5 @@
 //Follow Button Effect
+
 var Profile = React.createClass({
   onError() {
   this.src=this.props.profile_image
@@ -64,6 +65,7 @@ var MainPage=React.createClass({
         following={result[i]['friends_count']} profile_image={result[i]['profile_image_url']}/>)
       }
       this.setState({profiles:profiles})
+      $("div.preloader").css("display","none")
     }.bind(this))
   },
   render: function(){
