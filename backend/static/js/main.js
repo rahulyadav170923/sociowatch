@@ -45,19 +45,13 @@ var Profile = React.createClass({
 	</div>);
   }
 });
-/*
-var profiles=[]
-for (var i = 0; i < 8; i++) {
-  profiles.push(<Profile />)
-}
-*/
 
 var MainPage=React.createClass({
   getInitialState: function() {
     return {profiles:[]};
   },
   componentDidMount:function(){
-    this.serverRequest=$.get('/profiles',function (result) {
+    $.get('/profiles',function (result) {
       var profiles=[]
       for (var i = 0; i < 8; i++) {
         profiles.push(<Profile background={result[i]['profile_banner_url']} twitter_handle={result[i]['screen_name']}

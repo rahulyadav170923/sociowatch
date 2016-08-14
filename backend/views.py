@@ -58,8 +58,8 @@ def add_tweets():
 	pass
 # ---------------------- main app starts------------------
 
-@app.route('/main')
-def main():
+@app.route('/')
+def home():
 	return render_template('profiles.html')
 
 @app.route('/profiles')

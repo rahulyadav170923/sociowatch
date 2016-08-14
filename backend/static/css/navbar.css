@@ -4,29 +4,39 @@
 
 }
 nav {
+  background-color: #d6d1d2;
   height: inherit;;
   min-height:50px;
 }
+.nav-wrapper {
+  margin-right: 10%;
+  margin-left: 10%;
+
+}
 
 nav .brand-logo {
+  width: 40%;
   position: initial;
   height: inherit;
 }
 .brand-logo img {
   height: inherit;
 }
+/*
 .brand-logo {
   margin-left: 15%;
-}
+}*/
 
 nav > div > ul {
-  margin-right: 18%;
+  width: 60%;
+
   height: inherit;
 }
 nav > div > ul > li {
   padding: 0px 10px 0px 10px;
   height: inherit;
   display: table;
+  float: right;
 }
 nav > div > ul > li > a {
   font-family: fantasy;
@@ -34,5 +44,18 @@ nav > div > ul > li > a {
   display: table-cell;
   height: inherit;
   vertical-align: middle;
+  color: black;
+}
+.title {
+  width: 50%px;
+  text-align: center;
+  float: left;
+}
 
+.title > div {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 30px;
+  font-family: fantasy;
+  color: black;
 }
