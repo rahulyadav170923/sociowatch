@@ -58,11 +58,16 @@ def add_tweets():
 	pass
 # ---------------------- main app starts------------------
 
-@app.route('/')
-def home():
+@app.route('/govt_profiles')
+def govt_profiles():
 	return render_template('profiles.html')
 
 @app.route('/profiles')
 def profiles():
 	profiles=list(db.profiles.find())
 	return jsonify(json.loads(dumps(profiles)))
+
+
+@app.route('/')
+def about():
+	return render_template('about.html')

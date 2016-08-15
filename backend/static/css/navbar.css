@@ -1,11 +1,10 @@
 .navbar-fixed {
-  height: 100px;
+  height: 12%;
   min-height: 50px;
-
 }
 nav {
   background-color: #d6d1d2;
-  height: inherit;;
+  height: inherit;
   min-height:50px;
 }
 .nav-wrapper {
