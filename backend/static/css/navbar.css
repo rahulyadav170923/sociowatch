@@ -5,13 +5,14 @@ html{
 
 
 .navbar-fixed {
-  height: 12%;
+  height: 8%;
   min-height: 50px;
 }
 nav {
   background-color: #d6d1d2;
   height: inherit;
   min-height:50px;
+  padding: 5px;
 }
 .nav-wrapper {
   margin-right: 10%;

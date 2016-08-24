@@ -1,0 +1,57 @@
+ul#slide-out {
+  top: inherit;
+}
+
+.main-container{
+  height: 100%;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidenav{
+  height: inherit;
+  width: 30%;
+  display: inline-flex;
+}
+
+div.sidenav > ul{
+  width: inherit;
+}
+
+.content{
+  height: inherit;
+  width: 70%;
+  display: inline-flex;
+  top: inherit;
+
+}
+.content-parts{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: inherit;
+}
+.about{
+  display: inline-flex;
+  width: inherit;
+  height: 20%;
+}
+
+.stats{
+  display: inline-flex;
+  width: inherit;
+  height: 30%;
+}
+
+.recent-activity{
+  display: inline-flex;
+  width: inherit;
+  height: 25%;
+
+}
+.visualisation{
+  display: inline-flex;
+  width: inherit;
+  height: 25%;
+}

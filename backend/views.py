@@ -71,3 +71,7 @@ def profiles():
 @app.route('/')
 def about():
 	return render_template('about.html')
+
+@app.route('/profiles/<ver>')
+def profile(ver):
+	return render_template('profile.html')

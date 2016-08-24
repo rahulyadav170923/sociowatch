@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+ {% block body %}
+ 		<link rel="stylesheet" href={{url_for('static',filename='css/profile.css')}}>
+<div class="main-container">
+  <div class="sidenav">
+  <ul id="slide-out" class="side-nav fixed">
+   <li><div class="userView">
+     <img class="background" src={{url_for('static',filename='images/me.jpg')}}>
+     <a href="#!user"><img class="circle" src={{url_for('static',filename='images/logo.jpg')}}></a>
+     <a href="#!name"><span class="white-text name">John Doe</span></a>
+     <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+   </div></li>
+   <li><a class="waves-effect" href="#!">About</a></li>
+   <li><a class="waves-effect" href="#!">Recent Activity</a></li>
+   <li><a class="waves-effec" href="#!">Visualisations</a></li>
+ </ul>
+ </div>
+ <div class="content">
+<div class="content-parts">
+<div class="about">
+
+</div>
+<div class="stats">
+
+</div >
+ <div class="recent-activity">
+
+ </div>
+ <div class="visualisation">
+
+ </div>
+</div>
+ </div>
+
+{% endblock %}
